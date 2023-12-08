@@ -15,31 +15,34 @@
                 <div class="mb-3">
                     <a class="button is-primary" href="{% url 'book_new' %}">Add new book</a>
                 </div>
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="field">
-                            <input class="input" type="text" placeholder="Judul">
-                        </div>
-                        <div class="field">
-                            <input class="input" type="text" placeholder="Deskripsi">
-                        </div>
-                        <div class="field">
-                            <input class="input" type="text" placeholder="Kategori">
-                        </div>
-                        <div class="field">
-                            <input class="input" type="text" placeholder="Keywords">
-                        </div>
-                        <div class="field">
-                            <input class="input" type="text" placeholder="Harga">
-                        </div>
-                        <div class="field">
-                            <input class="input" type="text" placeholder="Penulis">
-                        </div>
-                        <div class="field">
-                            <button class="button is-primary">Search</button>
+                <form action="" method="get">
+                    {% csrf_token %}
+                    <div class="field is-horizontal mb-3">
+                        <div class="field-body">
+                            <div class="field">
+                                {{ form.title }}
+                            </div>
+                            <div class="field">
+                                {{ form.description }}
+                            </div>
+                            <div class="field">
+                                {{ form.category }}
+                            </div>
+                            <div class="field">
+                                {{ form.keywords }}
+                            </div>
+                            <div class="field">
+                                {{ form.price }}
+                            </div>
+                            <div class="field">
+                                {{ form.author }}
+                            </div>
+                            <div class="field">
+                                <button class="button is-primary">Search</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <form action="{% url 'book_delete_batch' %}" method="post">
                 {% csrf_token %}
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">

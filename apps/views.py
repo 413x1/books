@@ -1,10 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
-from .forms import BookForm
+from .forms import BookForm, BookFilterForm
+from .functions import get_book_filter
 
 def book_list(request):
-    books = Book.objects.all()
-    return render(request, 'index.html', {'books': books})
+    if request.method == "GET":
+        form = BookFilterForm(request.GET)
+        filters = get_book_filter(request.GET.dict())
+        books = Book.objects.filter(**filters)
+    else:
+        form = BookFilterForm()
+        books = Book.objects.all()
+    return render(request, 'index.html', {'books': books, 'form': form})
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
