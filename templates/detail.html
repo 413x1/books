@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{ book.title }} Details</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    </head>
+    <body>
+        <section class="section"></section>
+        <div class="container">
+            <h1 class="title">
+                {{ book.title }} Details
+            </h1>
+
+            <p><strong>Title:</strong> {{ book.title }}</p>
+            <p><strong>Description:</strong> {{ book.description }}</p>
+            <p><strong>Category:</strong> {{ book.category.name }}</p>
+            <p><strong>Keywords:</strong> {{ book.keywords }}</p>
+            <p><strong>Price:</strong> {{ book.price }}</p>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            
+            <div class="pt-3">
+                <a class="button is-info is-light" href="{% url 'book_list' %}">Kembali</a>
+                <a class="button is-info is-warning" href="{% url 'book_edit' pk=book.id %}">edit</a>
+            </div>
+        </div>
+    </body>
+</html>

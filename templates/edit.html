@@ -1,0 +1,22 @@
+<!-- books/templates/books/book_edit.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Edit{% else %}Add New{% endif %} Book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+</head>
+<body>
+
+<h2>{% if form.instance.pk %}Edit{% else %}Add New{% endif %} Book</h2>
+
+<form method="post" action="{% if form.instance.pk %}{% url 'book_edit' pk=form.instance.pk %}{% else %}{% url 'book_new' %}{% endif %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Save</button>
+</form>
+
+<a href="{% url 'book_list' %}">Back to Book List</a>
+
+</body>
+</html>
